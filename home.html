@@ -1,3 +1,6 @@
+
+
+
 <html>
 
     <head> 
@@ -11,7 +14,8 @@
   color: white;
   padding: 16px;
   font-size: 16px;
-  border: none;
+  border-radius: 5px;
+  border: 1px solid #4CAF50;
   cursor: pointer;
 }
 
@@ -51,18 +55,79 @@
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+/* Style all font awesome icons */
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background-color: #3e8e41;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #55ACEE;
+  background-color: #3e8e41;
+  color: white;
+}
+
+.fa-instagram {
+  background-color: #3e8e41;
+  color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+  background-color: #3e8e41;
+  color: white;
+}
+
+.fa-youtube {
+  background-color: #3e8e41;
+  color: white;
+}
         </style>
     </head>
+    <body>
+      <div class="logotoday">
+          <img id=""
+          style="
+          background-color: #7fc270;
+          width: 230px;
+          height: 40px;
+          margin-left: 1050px;
+          margin-top: 10px;"
+          src="https://www.jpmorgan.com/content/dam/logos-global/logo-jpm-brown.svg" alt="JP Morgan">
+
+        </div>
+    </body>
 
     <body>
+      <div style="border-style: solid;
+          border-radius: 10px;
+          border-color: #3e8e41;">
+
 
         <header> 
-            <h1>Welcome To Our Home Page</h1>
+            <h1><u> Welcome To Our Home Page</h1>
         </header>
 
         <nav>
             <div class="dropdown">
-                <button class="dropbtn">Please select one of these:</button>
+                <button class="dropbtn">Navigation Bar: ⬇</button>
                 <div class="dropdown-content">
                   <a href="home.html"> Home </a>
                   <a href="stockData.html"> Stock Data</a>
@@ -72,13 +137,31 @@
         </nav>
 
         <main> 
-            <h2> Please select one of the options above on stock news and stock dates. </h2>
+            <h2>  Please select one of the options above on stock news and stock dates. </h2>
         </main>
 
         <footer> 
-
-            <p> Check out our other websites: <a href="https://www.jpmorganchase.com/careers"> JPMorgan Careers </a> </p>
-
+          <body>
+            <div
+              id="box"
+              style="
+                background-color: #7fc270;
+                width: 400px;
+                height: 30px;
+                margin-top: 400px;
+                font-family: Arial, sans-serif;
+              ">
+            </div>
+            <a href="https://www.jpmorganchase.com/careers">Check out our other websites: JPMorgan Careers </a>
         </footer>
     </body>
 </html>
+  </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<a href="https://www.facebook.com/jpmorgan" class="fa fa-facebook"></a>
+<a href="https://x.com/jpmorgan" class="fa fa-twitter"></a>
+<a href="https://www.linkedin.com/company/jpmorgan" class="fa fa-linkedin"></a>
+<a href="https://www.instagram.com/jpmorgan/" class="fa fa-instagram"></a>
+<a href="https://www.youtube.com/user/jpmorgan" class="fa fa-youtube"></a>
