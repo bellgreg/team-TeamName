@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+    <title>Stocks</title>
+</head>
+<body>
+
+<div id="input">
+
+// input form for stock name
+
+// input form for date
+
+// submit button
+
+</div>
+<div id="output">
+
+
+// boxes for ouput or error codes
+
+</div>
+
+<script>
+
+
+// revieve stock name 
+    const stock = 'JPM'
+
+// revieve stock data
+    const date = '2024-07-24'
+
+
+    const apiUrl = ('https://api.polygon.io/v1/open-close/'+ stock +'/' + date + '?adjusted=true&apiKey=jFjhd2M6O5l_lTflmBYXJL8NhfhHaeiF')
+
+
+
+    console.log(apiUrl)
+
+
+async function getData(apiUrl) {
+    const url = apiUrl
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        const output = data;
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+getData(apiUrl)
+
+// factor output to just the data then put on DOM
+
+
+</script>
+</body>
+</html>
