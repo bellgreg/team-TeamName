@@ -8,57 +8,94 @@
 <div id="input">
 
 // input form for stock name
-
-// input form for date
-
-// submit button
-
-</div>
-<div id="output">
-
-
-// boxes for ouput or error codes
-
-</div>
-
-<script>
-
-
-// revieve stock name 
-    const stock = 'JPM'
-
-// revieve stock data
-    const date = '2024-07-24'
-
-
-    const apiUrl = ('https://api.polygon.io/v1/open-close/'+ stock +'/' + date + '?adjusted=true&apiKey=jFjhd2M6O5l_lTflmBYXJL8NhfhHaeiF')
-
-
-
-    console.log(apiUrl)
-
-
-async function getData(apiUrl) {
-    const url = apiUrl
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #CFF3CA;
         }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #7fc270;
+            color: white;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Simple Form</h2>
+        <div class="form-group">
+            <label for="input1">Input 1:</label>
+            <input type="text" id="input1">
+        </div>
+        <div class="form-group">
+            <label for="input2">Input 2:</label>
+            <input type="text" id="input2">
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="showOutput()">Submit</button>
+        </div>
+        <div class="output" id="output"></div>
+    </div>
 
-        const data = await response.json();
-        console.log(data);
-        const output = data;
-    } catch (error) {
-        console.error(error.message);
-    }
-}
+    <script>
+        const existingDate = new Date('2024-01-01'); // Example constant date
 
-getData(apiUrl)
+        function showOutput() {
+            const input1 = document.getElementById('input1').value;
+            const input2 = document.getElementById('input2').value;
+            const outputDiv = document.getElementById('output');
 
-// factor output to just the data then put on DOM
+            // Combine the existing date with input2
+            const combinedDate = new Date(existingDate);
+            combinedDate.setDate(existingDate.getDate() + parseInt(input2));
 
-
-</script>
+            outputDiv.textContent = `Input 1: ${input1}, Combined Date: ${combinedDate.toDateString()}`;
+        }
+    </script>
 </body>
 </html>
