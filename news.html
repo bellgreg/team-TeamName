@@ -1,77 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang = "en" >
+<head>
+    <title>Stocks</title>
+</head>
+<body>
+
+<div id="input">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Page</title>
+    <title>News</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #CFF3CA;
         }
-        .container {
-            display: flex;
-            width: 80%;
-            height: 80%;
-        }
-        .left-panel {
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            margin-right: 15px;
-        }
-        .left-panel button {
-            width: 100px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #7fc270;
-            color: white;
-            cursor: pointer;
-        }
-        .left-panel button:hover {
-            background-color: #0056b3;
-        }
-        .output {
-            flex-grow: 1;
+        .form-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
+            width: 300px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #7fc270;
+            color: white;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="left-panel">
-            <button onclick="updateNews('Top News')">Top News</button>
-            <button onclick="updateNews('Latest News')">Latest News</button>
-            <button onclick="updateNews('Technology')">Technology</button>
-            <button onclick="updateNews('Sports')">Sports</button>
+    <div class="form-container">
+        <h2>Insert a company/date to find the stock News</h2>
+        <div class="form-group">
+            <label for="input1">Stock name:</label>
+            <input type="text" id="input1" placeholder="JPM">
         </div>
-        <div class="output" id="output">
-            <h2>News Output</h2>
-            <p>Click a button to display the news here.</p>
+        <div class="form-group">
+            <button type="button" onclick="showOutput()">Submit</button>
         </div>
+        <div class="output" id="output"></div>
+        <p>Open console to see results</p>
     </div>
 
-    <script>
-        function updateNews(category) {
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = `<h2>${category} News</h2><p>Loading ${category} news...</p>`;
-            // Here you would typically fetch news data from an API and update the content
-            setTimeout(() => {
-                outputDiv.innerHTML = `<h2>${category} News</h2><p>Here is the latest ${category.toLowerCase()} news.</p>`;
-            }, 1000); // Simulate an API call delay
+
+<script>
+
+
+// revieve stock name 
+
+
+async function getData(apiUrl) {
+    const url = apiUrl
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
         }
-    </script>
+
+        var data = await response.json();
+        return data
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+
+async function showOutput() {
+    const stock = document.getElementById('input1').value;
+
+            const outputDiv = document.getElementById('output');
+
+
+    const apiUrl = ('https://api.polygon.io/v2/reference/news?ticker=' + stock + '&published_utc=2024-07-24&limit=10&apiKey=jFjhd2M6O5l_lTflmBYXJL8NhfhHaeiF')
+
+
+
+    console.log(apiUrl)
+
+
+    var product = getData(apiUrl)
+
+
+console.log(product)
+}
+var product = getData(apiUrl)
+
+
+console.log(product)
+
+// factor output to just the data then put on DOM
+
+
+</script>
 </body>
 </html>
