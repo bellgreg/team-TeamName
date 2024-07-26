@@ -7,10 +7,6 @@
 
 <div id="input">
 
-<<<<<<< HEAD
-=======
-// input form for stock name
->>>>>>> origin/main
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +19,48 @@
             align-items: center;
             height: 100vh;
             background-color: #CFF3CA;
-<<<<<<< HEAD
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #7fc270;
+            color: white;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
         }
         .form-container {
             background-color: #fff;
@@ -69,6 +106,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="form-container">
         <h2>Insert a company/date to find the stock data</h2>
@@ -100,71 +138,10 @@ async function getData(apiUrl) {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
-=======
->>>>>>> origin/main
         }
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 90%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #7fc270;
-            color: white;
-            cursor: pointer;
-        }
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #e9ecef;
-        }
-    </style>
-</head>
-<body>
-    <div class="form-container">
-        <h2>Simple Form</h2>
-        <div class="form-group">
-            <label for="input1">Input 1:</label>
-            <input type="text" id="input1">
-        </div>
-        <div class="form-group">
-            <label for="input2">Input 2:</label>
-            <input type="text" id="input2">
-        </div>
-        <div class="form-group">
-            <button type="button" onclick="showOutput()">Submit</button>
-        </div>
-        <div class="output" id="output"></div>
-    </div>
+        
 
-<<<<<<< HEAD
+
         var data = await response.json();
         return data
     } catch (error) {
@@ -194,23 +171,9 @@ console.log(product)
 var product = getData(apiUrl)
 
 
-console.log(product)
-=======
-    <script>
-        const existingDate = new Date('2024-01-01'); // Example constant date
+console.log(product) 
 
-        function showOutput() {
-            const input1 = document.getElementById('input1').value;
-            const input2 = document.getElementById('input2').value;
-            const outputDiv = document.getElementById('output');
->>>>>>> origin/main
 
-            // Combine the existing date with input2
-            const combinedDate = new Date(existingDate);
-            combinedDate.setDate(existingDate.getDate() + parseInt(input2));
-
-            outputDiv.textContent = `Input 1: ${input1}, Combined Date: ${combinedDate.toDateString()}`;
-        }
     </script>
 </body>
 </html>

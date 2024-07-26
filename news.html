@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!doctype html>
 <html lang = "en" >
 <head>
@@ -15,24 +14,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
->>>>>>> origin/main
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-<<<<<<< HEAD
             background-color: #CFF3CA;
         }
         .form-container {
@@ -64,32 +49,10 @@
             padding: 10px;
             border-radius: 5px;
             border: none;
-=======
-            background-color: #f0f0f0;
-        }
-        .container {
-            display: flex;
-            width: 80%;
-            height: 80%;
-        }
-        .left-panel {
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            margin-right: 15px;
-        }
-        .left-panel button {
-            width: 100px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
->>>>>>> origin/main
             background-color: #7fc270;
             color: white;
             cursor: pointer;
         }
-<<<<<<< HEAD
         .form-group button:hover {
             background-color: #0056b3;
         }
@@ -98,23 +61,10 @@
             padding: 10px;
             border-radius: 5px;
             background-color: #e9ecef;
-=======
-        .left-panel button:hover {
-            background-color: #0056b3;
-        }
-        .output {
-            flex-grow: 1;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
->>>>>>> origin/main
         }
     </style>
 </head>
 <body>
-<<<<<<< HEAD
     <div class="form-container">
         <h2>Insert a company/date to find the stock News</h2>
         <div class="form-group">
@@ -180,30 +130,3 @@ console.log(product)
 </script>
 </body>
 </html>
-=======
-    <div class="container">
-        <div class="left-panel">
-            <button onclick="updateNews('Top News')">Top News</button>
-            <button onclick="updateNews('Latest News')">Latest News</button>
-            <button onclick="updateNews('Technology')">Technology</button>
-            <button onclick="updateNews('Sports')">Sports</button>
-        </div>
-        <div class="output" id="output">
-            <h2>News Output</h2>
-            <p>Click a button to display the news here.</p>
-        </div>
-    </div>
-
-    <script>
-        function updateNews(category) {
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = `<h2>${category} News</h2><p>Loading ${category} news...</p>`;
-            // Here you would typically fetch news data from an API and update the content
-            setTimeout(() => {
-                outputDiv.innerHTML = `<h2>${category} News</h2><p>Here is the latest ${category.toLowerCase()} news.</p>`;
-            }, 1000); // Simulate an API call delay
-        }
-    </script>
-</body>
-</html>
->>>>>>> origin/main
