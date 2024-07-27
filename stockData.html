@@ -1,16 +1,9 @@
 <!doctype html>
-<html lang = "en" >
-<head>
-    <title>Stocks</title>
-</head>
-<body>
-
-<div id="input">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stocks check</title>
+    <title>Stocks</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,47 +49,41 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #e9ecef;
-        }
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 90%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #7fc270;
+        .dropbtn {
+            background-color: #4CAF50;
             color: white;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
             cursor: pointer;
         }
-        .form-group button:hover {
-            background-color: #0056b3;
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
         }
         .output {
             margin-top: 20px;
@@ -106,7 +93,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="form-container">
         <h2>Insert a company/date to find the stock data</h2>
@@ -121,59 +107,53 @@
         <div class="form-group">
             <button type="button" onclick="showOutput()">Submit</button>
         </div>
+
+
         <div class="output" id="output"></div>
-        <p>Open console to see results</p>
+      
     </div>
 
-
-<script>
-
-
-// revieve stock name 
-
-
-async function getData(apiUrl) {
-    const url = apiUrl
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+    <script>
+        async function getData(apiUrl) {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error(error.message);
+                return null;
+            }
         }
-        
 
-
-        var data = await response.json();
-        return data
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-
-async function showOutput() {
-    const stock = document.getElementById('input1').value;
+        async function showOutput() {
+            const stock = document.getElementById('input1').value;
             const date = document.getElementById('input2').value;
             const outputDiv = document.getElementById('output');
+            const apiKey = 'I33bVmWGtj8ALL3sC039A_Z3lHmH27qI';
+            const apiUrl = `https://api.polygon.io/v1/open-close/${stock}/${date}?adjusted=true&apiKey=${apiKey}`;
 
+            console.log(apiUrl);
 
-    const apiUrl = ('https://api.polygon.io/v1/open-close/'+ stock +'/' + date + '?adjusted=true&apiKey=jFjhd2M6O5l_lTflmBYXJL8NhfhHaeiF')
+            const data = await getData(apiUrl);
 
+            if (data) {
+                outputDiv.innerHTML = `
+                    <p>📊Stock: ${data.symbol}</p>
+                    <p>📅Date: ${data.from}</p>
+                    <p>🟢Open: ${data.open}</p>
+                    <p>🔴Close: ${data.close}</p>
+                    <p>📈High: ${data.high}</p>
+                    <p>📉Low: ${data.low}</p>
+                    <p>🔢Volume: ${data.volume}</p>
+                `;
+            } else {
+                outputDiv.innerHTML = `<p>Failed to fetch data. Please try again.</p>`;
+            }
 
-
-    console.log(apiUrl)
-
-
-    var product = getData(apiUrl)
-
-
-console.log(product)
-}
-var product = getData(apiUrl)
-
-
-console.log(product) 
-
-
+            console.log(data);
+        }
     </script>
 </body>
 </html>
