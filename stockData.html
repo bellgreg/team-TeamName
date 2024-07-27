@@ -91,8 +91,33 @@
             border-radius: 5px;
             background-color: #e9ecef;
         }
+        .fa-facebook, .fa-linkedin, .fa-instagram, .fa-twitter, .fa-youtube {
+            background-color: #3e8e41;
+            color: white;
+        } 
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            background-color: #7fc270;
+        }
+        .logo img {
+            width: 230px;
+            height: 40px;
+        }
+        .social-media {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #3e8e41;
+            padding: 10px 0;
+        }
     </style>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
     <div class="form-container">
         <h2>Insert a company/date to find the stock data</h2>
@@ -112,6 +137,15 @@
         <div class="output" id="output"></div>
       
     </div>
+    <div class="social-media">
+        <a href="https://www.facebook.com/jpmorgan" class="fa fa-facebook"></a>
+        <a href="https://x.com/jpmorgan" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/company/jpmorgan" class="fa fa-linkedin"></a>
+        <a href="https://www.instagram.com/jpmorgan/" class="fa fa-instagram"></a>
+        <a href="https://www.youtube.com/user/jpmorgan" class="fa fa-youtube"></a>
+        <a href="https://www.jpmorganchase.com/careers">Check out our other websites: JPMorgan Careers</a>
+    </div>
+
 
     <script>
         async function getData(apiUrl) {
