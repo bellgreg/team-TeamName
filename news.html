@@ -1,12 +1,5 @@
 <!doctype html>
-<html lang = "en" >
-<head>
-    <title>Stocks</title>
-</head>
-<body>
-
-<div id="input">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             background-color: #CFF3CA;
+            margin: 0;
         }
         .form-container {
             background-color: #fff;
@@ -26,6 +20,8 @@
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
+            position: relative;
+            margin-top: 20px;
         }
         .form-container h2 {
             text-align: center;
@@ -61,12 +57,134 @@
             padding: 10px;
             border-radius: 5px;
             background-color: #e9ecef;
+            max-width: 300px;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+        .carousel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .carousel-item {
+            display: none;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        .carousel-buttons button {
+            background-color: #7fc270;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .carousel-buttons button:hover {
+            background-color: #0056b3;
+        }
+        header {background-color: #7fc270}
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+            cursor: pointer;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+        .fa {
+            padding: 20px;
+            font-size: 30px;
+            width: 50px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .fa:hover {
+            opacity: 0.7;
+        }
+        .fa-facebook, .fa-linkedin, .fa-instagram, .fa-twitter, .fa-youtube {
+            background-color: #3e8e41;
+            color: white;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            background-color: #7fc270;
+        }
+        .logo img {
+            width: 230px;
+            height: 40px;
+        }
+        .social-media {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #3e8e41;
+            padding: 10px 0;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="https://www.jpmorgan.com/content/dam/logos-global/logo-jpm-brown.svg" alt="JP Morgan">
+        </div>
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">Navigation Bar: ⬇</button>
+                <div class="dropdown-content">
+                    <a href="home.html">Home</a>
+                    <a href="stockData.html">Stock Data</a>
+                    <a href="news.html">Stock News</a>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="form-container">
-        <h2>Insert a company/date to find the stock News</h2>
+        <h2>Insert a company to find the stock News</h2>
         <div class="form-group">
             <label for="input1">Stock name:</label>
             <input type="text" id="input1" placeholder="JPM">
@@ -74,59 +192,90 @@
         <div class="form-group">
             <button type="button" onclick="showOutput()">Submit</button>
         </div>
-        <div class="output" id="output"></div>
+        <div class="output" id="output">
+            <div class="carousel" id="carousel">
+                <div class="carousel-buttons">
+                    <button onclick="prev()">Prev</button>
+                    <button onclick="next()">Next</button>
+                </div>
+            </div>
+        </div>
         <p>Open console to see results</p>
     </div>
+    <div class="social-media">
+        <a href="https://www.facebook.com/jpmorgan" class="fa fa-facebook"></a>
+        <a href="https://x.com/jpmorgan" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/company/jpmorgan" class="fa fa-linkedin"></a>
+        <a href="https://www.instagram.com/jpmorgan/" class="fa fa-instagram"></a>
+        <a href="https://www.youtube.com/user/jpmorgan" class="fa fa-youtube"></a>
+        <a href="https://www.jpmorganchase.com/careers">Check out our other websites: JPMorgan Careers</a>
+    </div>
 
+    <script>
+        let currentSlide = 0;
+        let articles = [];
 
-<script>
-
-
-// revieve stock name 
-
-
-async function getData(apiUrl) {
-    const url = apiUrl
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+        async function getData(apiUrl) {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error(error.message);
+                return null;
+            }
         }
 
-        var data = await response.json();
-        return data
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-
-async function showOutput() {
-    const stock = document.getElementById('input1').value;
-
+        async function showOutput() {
+            const stock = document.getElementById('input1').value;
             const outputDiv = document.getElementById('output');
+            const apiKey = 'I33bVmWGtj8ALL3sC039A_Z3lHmH27qI';
+            const apiUrl = `https://api.polygon.io/v2/reference/news?ticker=${stock}&limit=10&apiKey=${apiKey}`;
 
+            console.log(apiUrl);
 
-    const apiUrl = ('https://api.polygon.io/v2/reference/news?ticker=' + stock + '&published_utc=2024-07-24&limit=10&apiKey=jFjhd2M6O5l_lTflmBYXJL8NhfhHaeiF')
+            const data = await getData(apiUrl);
 
+            if (data && data.results) {
+                articles = data.results;
+                currentSlide = 0;
+                renderCarousel();
+            } else {
+                outputDiv.innerHTML = `<p>Failed to fetch data. Please try again.</p>`;
+            }
 
+            console.log(data);
+        }
 
-    console.log(apiUrl)
+        function renderCarousel() {
+            const carousel = document.getElementById('carousel');
+            carousel.innerHTML = articles.map((article, index) => `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                    <h3>${article.title || 'No title available'}</h3>
+                    <p>${article.published_utc || 'No date available'}</p>
+                    <p>${article.article_url ? `<a href="${article.article_url}" target="_blank">Read more</a>` : 'No URL available'}</p>
+                </div>
+            `).join('');
+            showSlide(currentSlide);
+        }
 
+        function showSlide(index) {
+            const items = document.querySelectorAll('.carousel-item');
+            items.forEach(item => item.classList.remove('active'));
+            items[index].classList.add('active');
+        }
 
-    var product = getData(apiUrl)
+        function next() {
+            currentSlide = (currentSlide + 1) % articles.length;
+            showSlide(currentSlide);
+        }
 
-
-console.log(product)
-}
-var product = getData(apiUrl)
-
-
-console.log(product)
-
-// factor output to just the data then put on DOM
-
-
-</script>
+        function prev() {
+            currentSlide = (currentSlide - 1 + articles.length) % articles.length;
+            showSlide(currentSlide);
+        }
+    </script>
 </body>
 </html>
